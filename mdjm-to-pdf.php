@@ -2,12 +2,12 @@
 	defined( 'ABSPATH' ) or die( "Direct access to this page is disabled!!!" );
 /**
  * Plugin Name: MDJM to PDF
- * Plugin URI: http://www.mydjplanner.co.uk/mdjm-to-pdf/
+ * Plugin URI: http://mdjm.co.uk/products/pdf-export/
  * Description: MDJM to PDF compliments the MDJM Event Management for WordPress plugin by enabling exports of Event documentation to PDF
  * Version: 1.0
  * Date: 26 November 2015
- * Author: My DJ Planner <contact@mydjplanner.co.uk>
- * Author URI: http://www.mydjplanner.co.uk
+ * Author: Mike Howard <mike@mikeandniki.co.uk>
+ * Author URI: http://mdjm.co.uk
  * Text Domain: mdjm-to-pdf
  * Domain Path: /languages
  * License: GPL2
