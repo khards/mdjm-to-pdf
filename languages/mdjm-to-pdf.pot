@@ -1,0 +1,249 @@
+# Copyright (C) 2015 MDJM to PDF
+# This file is distributed under the same license as the MDJM to PDF package.
+msgid ""
+msgstr ""
+"Project-Id-Version: MDJM to PDF 0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mdjm-to-pdf\n"
+"POT-Creation-Date: 2015-10-31 00:54:01+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: admin/mdjm-pdf-menu.php:27 admin/mdjm-pdf-settings.php:239
+msgid "PDF Settings"
+msgstr ""
+
+#: admin/mdjm-pdf-menu.php:30
+msgid "MDJM PDF Settings"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:13
+msgid "PDF Options"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:16
+msgid "Template Override"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:38
+msgid "Page Size"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:50
+msgid "A1"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:51
+msgid "A2"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:52
+msgid "A3"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:53
+msgid "A4"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:54
+msgid "A5"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:55
+msgid "B1"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:56
+msgid "B2"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:57
+msgid "B3"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:58
+msgid "B4"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:59
+msgid "B5"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:60
+msgid "Letter"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:61
+msgid "Legal"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:67
+msgid "Page Orientation"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:79
+msgid "Portrait"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:80
+msgid "Landscape"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:86
+msgid "Watermark"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:92
+msgid "A watermark can be added to your PDF documents. Leave blank for none"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:98
+msgid "Quote Template Attachment"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:103 admin/mdjm-pdf-settings.php:143
+#: admin/mdjm-pdf-settings.php:181
+msgid "Add New"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:104
+msgid ""
+"This is the template that will be attached to quotes via %semail%s to clients"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:114
+msgid "Enquiry Text"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:121
+msgid ""
+"Override the default template used when sending quotes via email to clients. "
+"Leave this text empty if you do %snot%s want to override"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:138
+msgid "Contract Template Attachment"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:144
+msgid "This is the template that will be attached to contract emails"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:153
+msgid "Contract Text"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:160
+msgid ""
+"Override the default template used when sending contract notification emails "
+"to clients. Leave this text empty if you do %snot%s want to override"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:176
+msgid "Booking Confirmation Attachment"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:182
+msgid ""
+"This is the template that will be attached to booking confirmation emails"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:191
+msgid "Booking Confirmation Text"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:198
+msgid ""
+"Override the default template used when sending booking confirmation emails "
+"to clients. Leave this text empty if you do %snot%s want to override"
+msgstr ""
+
+#: admin/mdjm-pdf-settings.php:240
+msgid "Template Overrides"
+msgstr ""
+
+#: includes/mdjm-pdf-processor.php:201
+msgid "CONTRACT ACCEPTANCE"
+msgstr ""
+
+#: includes/mdjm-pdf-processor.php:202
+msgid ""
+"By signing this contract I hereby confirm that the person named within the "
+"contract is me and that all associated details are correct."
+msgstr ""
+
+#: includes/mdjm-pdf-processor.php:203
+msgid ""
+"My signature confirms that I have read, understood and accept the terms of "
+"this contract."
+msgstr ""
+
+#: includes/mdjm-pdf-processor.php:547
+msgid "Add an attachment"
+msgstr ""
+
+#: includes/mdjm-pdf-processor.php:551
+msgid "No Attachment"
+msgstr ""
+
+#: includes/mdjm-pdf-shortcodes.php:50 mdjm-to-pdf.php:149
+msgid "Print"
+msgstr ""
+
+#: includes/mdjm-pdf-shortcodes.php:78 mdjm-to-pdf.php:150 mdjm-to-pdf.php:151
+msgid "Download"
+msgstr ""
+
+#: includes/mdjm-pdf-shortcodes.php:106
+msgid "Email"
+msgstr ""
+
+#: mdjm-to-pdf.php:173
+msgid "Settings"
+msgstr ""
+
+#: mdjm-to-pdf.php:192
+msgid "Donate"
+msgstr ""
+
+#: mdjm-to-pdf.php:193
+msgid "More Extensions"
+msgstr ""
+
+#: procedures/mdjm-pdf-install.php:13
+msgid ""
+"Mobile DJ Manager for WordPress plugin is either not installed or not "
+"activated!"
+msgstr ""
+
+#: procedures/mdjm-pdf-install.php:16
+msgid ""
+"The MDJM to PDF plugin requires the Mobile DJ Manager for WordPress plugin "
+"to be at minimum version 1.2.6. You are currently running %s. Update before "
+"activating."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "MDJM to PDF"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.mydjplanner.co.uk/mdjm-to-pdf/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"MDJM to PDF compliments the MDJM Event Management for WordPress plugin by "
+"enabling exports of Event documentation to PDF"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "My DJ Planner <contact@mydjplanner.co.uk>"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.mydjplanner.co.uk"
+msgstr ""
