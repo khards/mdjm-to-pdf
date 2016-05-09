@@ -5,7 +5,7 @@
  * Plugin URI: http://mdjm.co.uk/products/pdf-export/
  * Description: MDJM to PDF compliments the MDJM Event Management for WordPress plugin by enabling exports of Event documentation to PDF
  * Version: 1.0
- * Date: 26 November 2015
+ * Date: 12th May 2016
  * Author: Mike Howard <mike@mikeandniki.co.uk>
  * Author URI: http://mdjm.co.uk
  * Text Domain: mdjm-to-pdf

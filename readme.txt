@@ -2,7 +2,7 @@
 Contributors: mikeyhoward1977
 Tags: DJ, Mobile DJ, DJ Planning, Event Planning, CRM, Event Planner, DJ Event Planner, DJ Agency, DJ Tool, Playlist Management, Contact Forms, Mobile Disco, Disco, Event Management, DJ Manager, MDJM Event Management, DJ Management
 Requires at least: 4.1
-Tested up to: 4.5.1
+Tested up to: 4.6
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -16,8 +16,8 @@ MDJM to PDF compliments the MDJM Event Management for WordPress plugin enabling 
 
 Simple shortcodes enable you to easily add links to your client facing pages allowing them to print or download the relevant document.
 
-* [mdjm-pdf-print text="$Print"]
-* [mdjm-pdf-download text="$Download"]
+* [mdjm-pdf-print text="Print"]
+* [mdjm-pdf-download text="Download"]
 
 Shortcodes can be used within Contract and Online Quote pages.
 
@@ -54,7 +54,7 @@ Support can be obtained via our online [Support Forums](http://www.mydjplanner.c
 
 = Is there a Pro version with additional features? =
 
-Premium addons are available to further enhance the MDJM Event Management plugin at http://www.mydjplanner.co.uk
+Premium addons are available to further enhance the MDJM Event Management plugin at http://mdjm.co.uk
 
 == Screenshots ==
 
@@ -65,10 +65,13 @@ Premium addons are available to further enhance the MDJM Event Management plugin
 
 = 1.0 =
 
+**Released 12th May, 2016**
+
 * Tweak: Use MDJM's new content tags
 * Tweak: Use MDJM's new filters for setting subject, content, attachments
 * Tweak: Use MDJM's new settings API
 * Tweak: Use MDJM's new singleton class
+* Tweak: Compatibility for MDJM 1.3
 
 = 0.3 =
 **Released 26th November, 2015**
