@@ -83,7 +83,7 @@
 		
 		if ( ! empty( $pdf_settings ) )	{
 			foreach ( $pdf_settings as $key => $value )	{
-				if ( empty( mdjm_get_option( $key, false ) ) )	{
+				if ( ! mdjm_get_option( $key, false ) )	{
 					mdjm_update_option( $key, $value );
 				}
 			}
