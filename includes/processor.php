@@ -111,7 +111,7 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 			if( !empty( $subject ) )
 				$mdjm_mpdf->SetSubject( $subject );
 				
-			if( !empty( mdjm_get_option( 'pdf_watermark' ) ) )	{
+			if( mdjm_get_option( 'pdf_watermark' ) )	{
 				$mdjm_mpdf->SetWatermarkText( mdjm_get_option( 'pdf_watermark' ), 0.2 );
 				$mdjm_mpdf->showWatermarkText = true;
 			}
@@ -249,7 +249,7 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 		 */
 		public function set_quote_subject( $subject )	{
 			
-			if ( empty( mdjm_get_option( 'pdf_enquiry_text' ) ) )	{
+			if ( ! mdjm_get_option( 'pdf_enquiry_text' ) )	{
 				return $subject;
 			} else	{
 				return get_the_title( mdjm_get_option( 'pdf_enquiry_template' ) );
@@ -288,7 +288,7 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 
 			global $mdjm_mpdf;
 			
-			if ( empty ( mdjm_get_option( 'pdf_enquiry_text' ) ) )	{
+			if ( ! mdjm_get_option( 'pdf_enquiry_text' ) )	{
 				return $attachments;
 			}
 			
@@ -343,7 +343,7 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 		 */
 		public function set_contract_subject( $subject )	{
 			
-			if ( empty( mdjm_get_option( 'pdf_contract_text' ) ) )	{
+			if ( ! mdjm_get_option( 'pdf_contract_text' ) )	{
 				return $subject;
 			} else	{
 				return get_the_title( mdjm_get_option( 'pdf_contract_template' ) );
@@ -382,7 +382,7 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 
 			global $mdjm_mpdf;
 			
-			if ( empty ( mdjm_get_option( 'pdf_contract_text' ) ) )	{
+			if ( ! mdjm_get_option( 'pdf_contract_text' ) )	{
 				return $attachments;
 			}
 			
@@ -437,7 +437,7 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 		 */
 		public function set_booking_conf_subject( $subject )	{
 			
-			if ( empty( mdjm_get_option( 'pdf_booking_conf_text' ) ) )	{
+			if ( ! mdjm_get_option( 'pdf_booking_conf_text' ) )	{
 				return $subject;
 			} else	{
 				return get_the_title( mdjm_get_option( 'pdf_booking_conf_template' ) );
@@ -476,7 +476,7 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 			
 			global $mdjm_mpdf;
 			
-			if ( empty ( mdjm_get_option( 'pdf_booking_conf_text' ) ) )	{
+			if ( ! mdjm_get_option( 'pdf_booking_conf_text' ) )	{
 				return $attachments;
 			}
 			
