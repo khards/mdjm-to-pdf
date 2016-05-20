@@ -531,7 +531,7 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 		 * @return		arr		$files		Filtered files attached to email
 		 */
 		function pdf_attach( $files, $data )	{
-			global $mdjm, $mdjm_mpdf;
+			global $mdjm_mpdf;
 			
 			// Only process if we need to
 			if( empty( $data['pdf_attach'] ) )	{
@@ -547,24 +547,23 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 
 			}
 			
+			$mdjm_event = new MDJM_Event( $data['mdjm_email_event'] );
+			
+			// Prepare the content
+			$template = get_post( $data['pdf_attach'] );
+			
 			// If the template does not exist return
-			if( ! get_post( $data['pdf_attach'] ) )	{
+			if( ! $template )	{
 				MDJM()->debug->log_it( 'Cannot create PDF file. The specified template (' . $data['pdf_attach'] . ') does not exist in ' . __METHOD__, true );
-				
 				return $files;
 			}
 				
-			// Prepare the content
-			$template = get_post( $data['pdf_attach'] );
-				
-			$content = $template->post_content;
-			$content = apply_filters( 'the_content', $content );
-			$content = str_replace( ']]>', ']]&gt;', $content );
-			
-			$eventinfo = $mdjm->mdjm_events->event_detail( $data['mdjm_email_event'] );
+			$content  = $template->post_content;
+			$content  = apply_filters( 'the_content', $content );
+			$content  = str_replace( ']]>', ']]&gt;', $content );
 			
 			// Run the content through the Content Filter
-			$content = mdjm_do_content_tags( $content, $data['mdjm_email_event'], $data['mdjm_email_to'] );
+			$content  = mdjm_do_content_tags( $content, $mdjm_event->ID, $mdjm_event->client );
 			
 			// Generate the PDF file
 			$this->init_mpdf();
@@ -573,7 +572,7 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 			
 			// Create the file and save
 			$upload_dir = wp_upload_dir();
-			$file = $upload_dir['path'] . '/' . str_replace( ' ', '_', mdjm_get_option( 'company_name' ) ) . '_' . mdjm_get_event_contract_id( $_POST['mdjm_email_event'] ) . '-' . date( 'Y-m-d H:i:s' ) . '.pdf';
+			$file       = $upload_dir['path'] . '/' . str_replace( ' ', '_', mdjm_get_option( 'company_name' ) ) . '_' . mdjm_get_event_contract_id( $_POST['mdjm_email_event'] ) . '-' . date( 'Y-m-d H:i:s' ) . '.pdf';
 			$mdjm_mpdf->Output( $file, 'F' );
 			
 			if( !file_exists( $file ) )	{
