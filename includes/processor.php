@@ -127,10 +127,12 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 		 *
 		 */
 		function pdf_output()	{
-			global $mdjm_mpdf, $mdjm;
+
+			global $mdjm_mpdf;
 			
-			if( !isset( $_GET['pdf_output'] ) )
+			if( ! isset( $_GET['pdf_output'] ) )	{
 				return;
+			}
 			
 			$poss_output = array( 'I', 'D', 'F', 'S' );
 			
@@ -145,36 +147,35 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 				$content = $template->post_content;
 				$content = apply_filters( 'the_content', $content );
 				$content = str_replace( ']]>', ']]&gt;', $content );
-			}
-			// Data is a string
-			else
+			} else	{
 				$content = $data;
+			}
 			
 			$this->init_mpdf();
-			//$stylesheet = file_get_contents(get_template_directory_uri() . '/style.css');
-			//$this->mdjm_pdf->WriteHTML( $stylesheet,1 );
 			$this->set_pdf_meta();
 			$mdjm_mpdf->WriteHTML( $content, 2 );
 			
 			// Set the filename if required
 			switch( $output )	{
-				case 'I':
-					$file = MDJM_COMPANY . '.pdf';
-				break;
-				case 'D':
-					$file = MDJM_COMPANY . '.pdf';
-				break;
-				case 'F':
+				case 'I' :
+				default  :
+					$file = mdjm_get_option( 'company_name' ) . '.pdf';
+					break;
+				case 'D' :
+					$file = mdjm_get_option( 'company_name' ) . '.pdf';
+					break;
+				case 'F' :
 				$upload_dir = wp_upload_dir();
-					$file = $upload_dir['path'] . '/' . str_replace( ' ', '_', MDJM_COMPANY ) . '.pdf';
-				break;
-				case 'S':
+					$file = $upload_dir['path'] . '/' . str_replace( ' ', '_', mdjm_get_option( 'company_name' ) ) . '.pdf';
+					break;
+				case 'S' :
 					$file = '';
-				break;	
+					break;	
 			}
 			
 			$mdjm_mpdf->Output( $file, $output );
 			exit;
+
 		} // pdf_output
 		
 		/**
@@ -185,25 +186,29 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 		 * @return		int|arr		The content for the PDF file
 		 */
 		function pdf_content()	{
-			global $post, $mdjm;
+
+			global $post;
 			
 			if( !empty( $post ) )	{
+				
+				$event_id = $_GET['event_id'];
+				$mdjm_event = new MDJM_Event( $event_id );
+				
 				// Quote
-				if( $post->ID == MDJM_QUOTES_PAGE )	{
-					$quoteID = $mdjm->mdjm_events->retrieve_quote( $_GET['event_id'] );
+				if( $post->ID == mdjm_get_option( 'quotes_page' ) )	{
+
+					$quoteID = mdjm_get_event_quote_id( $event_id );
 					
 					return $quoteID;
-				}
-				// Contract
-				elseif( $post->ID == MDJM_CONTRACT_PAGE )	{
+
+				} elseif( $post->ID == mdjm_get_option( 'contracts_page' ) )	{
 					$status = array( 'mdjm-approved', 'mdjm-completed' );
-					$signed = get_post_meta( $_GET['event_id'], '_mdjm_signed_contract', true );
-					$unsigned = get_post_meta( $_GET['event_id'], '_mdjm_event_contract', true );
+					$signed = get_post_meta( $event_id, '_mdjm_event_signed_contract', true );
+					$unsigned = get_post_meta( $event_id, '_mdjm_event_contract', true );
 					
-					if( in_array( get_post_status( $_GET['event_id'] ), $status ) && !empty( $signed ) )
+					if( in_array( get_post_status( $event_id ), $status ) && !empty( $signed ) )	{
 						return $signed;
-						
-					else	{ // Unsigned contracts need filtering
+					} else	{ // Unsigned contracts need filtering
 						$template = get_post( $unsigned );
 						
 						// Let's add space for a signatory
@@ -214,14 +219,14 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 						$signing .= '<table style="border: none; border-collapse: collapse; width: 75%; float: left;">';
 						$signing .= '<tr>';
 						$signing .= '<th style="text-align: left; width: 25%; height: 50px; vertical-align:bottom;">Full Name: </th>';
-						$signing .= '<td style="border-bottom: 1px solid #000; text-align: left; vertical-align:bottom;">{CLIENT_FULLNAME}</td>';
+						$signing .= '<td style="border-bottom: 1px solid #000; text-align: left; vertical-align:bottom;">{client_fullname}</td>';
 						$signing .= '</tr>';
 						$signing .= '<tr>';
-						$signing .= '<th style="text-align: left; height: 50px; vertical-align:bottom;">Signature: </th>';
+						$signing .= '<th style="text-align: left; height: 50px; vertical-align:bottom;">' . __( 'Signature', 'mdjm-to-pdf' ) . ': </th>';
 						$signing .= '<td style="border-bottom: 1px solid #000; text-align: left; vertical-align:bottom;">&nbsp;</td>';
 						$signing .= '</tr>';
 						$signing .= '<tr>';
-						$signing .= '<th style="text-align: left; height: 50px; vertical-align:bottom;">Date (' . strtoupper( MDJM_SHORTDATE_FORMAT  ) . '): </th>';
+						$signing .= '<th style="text-align: left; height: 50px; vertical-align:bottom;">' . __( 'Date', 'mdjm-to-pdf' ) . ' (' . strtoupper( mdjm_get_option( 'short_date_format' )  ) . '): </th>';
 						$signing .= '<td style="text-align: left; vertical-align:bottom;">_________/________/________________</td>';
 						$signing .= '</tr>';
 						$signing .= '</table>';
@@ -229,10 +234,8 @@ if( !class_exists( 'MDJM_PDF_Processor' ) ) :
 						$content = $template->post_content . $signing;
 						$content = apply_filters( 'the_content', $content );
 						$content = str_replace( ']]>', ']]&gt;', $content );
-						
-						$eventinfo = $mdjm->mdjm_events->event_detail( $_GET['event_id'] );
-						
-						$content = $mdjm->filter_content( $eventinfo['client']->ID, $_GET['event_id'], $content );
+												
+						$content = mdjm_do_content_tags( $content, $event_id, $mdjm_event->client );
 						
 						return $content;
 					}
