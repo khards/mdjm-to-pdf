@@ -6,7 +6,7 @@ Tested up to: 4.6
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Donate link:
+Donate link: http://mdjm.co.uk/support-our-work/
 
 MDJM to PDF compliments the MDJM Event Management for WordPress plugin by enabling exports of Event documentation to PDF
 
