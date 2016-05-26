@@ -1,4 +1,4 @@
-<h1>MDJM to PDF plugin for WordPress</h1>
+[![Build Status](https://travis-ci.org/mikeyhoward1977/mdjm-to-pdf.svg?branch=master)](https://travis-ci.org/mikeyhoward1977/mdjm-to-pdf)
 
 <h2>Welcome to our GitHub repository!</h2>
 
