@@ -63,6 +63,13 @@ Premium addons are available to further enhance the MDJM Event Management plugin
 
 == Changelog ==
 
+= 1.1 =
+
+* **Tweak**: Updated shortcodes to use `MDJM_Event` class
+* **Tweak**: Use `mdjm_do_content_tags()`
+* **Tweak**: Updated coding standards
+* **Tweak**: Added version check for MDJM
+
 = 1.0 =
 
 **Released 12th May, 2016**
