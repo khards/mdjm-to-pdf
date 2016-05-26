@@ -6,19 +6,11 @@
  *
  *
  *
- */	
-	if( !class_exists( 'MDJM' ) )
-		exit( __( 'Mobile DJ Manager for WordPress plugin is either not installed or not activated!', 'mdjm-to-pdf' ) );
-	
-	if( MDJM_VERSION_NUM < '1.3' )	{
-		exit( sprintf( __( 'The MDJM to PDF plugin requires the Mobile DJ Manager for WordPress plugin to be at minimum version 1.2.6. You are currently running %s. Update before activating.', 
-			'mdjm-to-pdf' ), MDJM_VERSION_NUM ) );
-	}
- 
-	if( get_option( 'mdjm_pdf_version' ) )
+ */	 
+function mdjm_to_pdf_install()	{
+	if( get_option( 'mdjm_pdf_version' ) )	{
 		return;
-		
-	else	{
+	} else	{
 		// Version
 		add_option( 'mdjm_pdf_version', MDJM_PDF_VERSION_NUM );
 		
@@ -26,7 +18,7 @@
 		$pdf_settings = array(
 			'pdf_page_size'                => 'A4',
 			'pdf_page_orientation'         => '-P',
-			'pdf_watermark'                => mdjm_company( 'company_name' ),
+			'pdf_watermark'                => mdjm_get_option( 'company_name' ),
 			'pdf_enquiry_template'         => mdjm_get_option( 'enquiry' ),
 			'pdf_contract_template'        => mdjm_get_option( 'contract' ),
 			'pdf_booking_conf_template'    => mdjm_get_option( 'booking_conf_client' )
@@ -36,3 +28,5 @@
 			mdjm_update_option( $key, $value );
 		}
 	}
+}
+register_activation_hook( MDJM_PDF_PLUGIN_FILE, 'mdjm_to_pdf_install' );

@@ -4,8 +4,8 @@
  * Plugin Name: MDJM to PDF
  * Plugin URI: http://mdjm.co.uk/products/pdf-export/
  * Description: MDJM to PDF compliments the MDJM Event Management for WordPress plugin by enabling exports of Event documentation to PDF
- * Version: 1.0
- * Date: 12th May 2016
+ * Version: 1.1
+ * Date: 26th May 2016
  * Author: Mike Howard <mike@mikeandniki.co.uk>
  * Author URI: http://mdjm.co.uk
  * Text Domain: mdjm-to-pdf
@@ -28,10 +28,12 @@
  */
 class MDJM_to_PDF	{
 	private static $instance;
+	private static $required_mdjm = 1.3;
 	
 	public static function instance()	{
 		// Do nothing if MDJM is not activated
 		if( ! class_exists( 'Mobile_DJ_Manager', false ) ) {
+			add_action( 'admin_notices', array( __CLASS__, 'notices' ) );
 			return;
 		}
 		
@@ -52,7 +54,7 @@ class MDJM_to_PDF	{
 	public static function define_constants()	{
 
 		define( 'MDJM_PDF_NAME', 'MDJM to PDF for MDJM Event Management' );
-		define( 'MDJM_PDF_VERSION_NUM', '1.0' );
+		define( 'MDJM_PDF_VERSION_NUM', '1.1' );
 		define( 'MDJM_PDF_REQUIRED_WP_VERSION', '4.1' );
 		define( 'MDJM_PDF_BASENAME', plugin_basename( __FILE__ ) );
 		define( 'MDJM_PDF_PLUGIN_NAME', trim( dirname( MDJM_PDF_BASENAME ), '/' ) );
@@ -61,6 +63,7 @@ class MDJM_to_PDF	{
 		define( 'MDJM_PDF_VERSION_KEY', 'mdjm_pdf_version');
 		define( 'MDJM_PDF_SETTINGS_KEY', 'mdjm_pdf_settings' );
 		define( 'MDJM_PDF_CONTENT_KEY', 'mdjm_pdf_content' );
+		define( 'MDJM_PDF_PLUGIN_FILE', __FILE__ );
 
 	} // define_constants
 	
@@ -73,6 +76,11 @@ class MDJM_to_PDF	{
 		require_once( 'includes/admin/settings.php' );
 		require_once( 'includes/processor.php' );
 		require_once( 'includes/shortcodes.php' );
+		
+		if ( is_admin() )	{
+			require_once( 'includes/admin/procedures/install.php' );
+		}
+		
 	} // includes
 	
 	/**
@@ -88,6 +96,24 @@ class MDJM_to_PDF	{
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_meta_links' ), 10, 2 );
 	} // hooks
 	
+	/**
+	 * Display a notice if MDJM not active or at required version.
+	 *
+	 * @since	0.1
+	 */
+	public static function notices()	{
+
+		if ( ! defined( 'MDJM_VERSION_NUM' ) )	{
+			$message = sprintf( __( 'MDJM to PDF requires that MDJM Event Management must be installed and activated.', 'mdjm-to-pdf' ) );
+		} else	{
+			$message = sprintf( __( 'MDJM to PDF requires MDJM Event Management version %s and higher.', 'mdjm-to-pdf' ) , self::$required_mdjm );
+		}
+		
+		echo '<div class="notice notice-error is-dismissible">';
+		echo '<p>' . $message . '</p>';
+		echo '</div>';
+
+	} // notices
 	
 	/**
 	 * Load translation text domain.
@@ -99,16 +125,6 @@ class MDJM_to_PDF	{
 		
 		load_plugin_textdomain( 'mdjm-to-pdf', false, $plugin_dir . '/languages' );
 	} // load_textdomain
-	
-	/**
-	 * Actions upon activation.
-	 *
-	 * @since	1.0
-	 */
-	public static function activate()	{			
-		if( ! get_option( 'mdjm_pdf_version' ) )
-			require_once( 'includes/admin/procedures/install.php' );
-	} // activate
 	
 	/**
 	 * Check if the plugin has been updated and if we have any update procedures to run.
@@ -187,5 +203,3 @@ function MDJM_PDF()	{
 	return MDJM_to_PDF::instance();
 } // MDJM_to_PDF
 add_action( 'plugins_loaded', 'MDJM_PDF' );
-
-register_activation_hook( __FILE__, array( 'MDJM_to_PDF', 'activate' ) );
